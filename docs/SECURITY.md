@@ -1,12 +1,27 @@
-# UGLY DUCK TEK — Practice-only Security Model
+# UGLY DUCK TEK — Security and Privacy (V0.2)
 
-Version 0.1 is a static, offline-friendly browser practice experience. All state is saved under `ugly-duck-tek.practice.v1` in the browser's localStorage and is neither encrypted nor backed up. Notes and progress can be modified by the user or any script running under the same origin.
+This is a public, static, browser-local practice app. **It has no student accounts, private server, issuing authority, wallet connection, NFT minting or official program permissions.**
 
-- No authenticated accounts, API keys, private data server, wallets, seed phrases, official certificates or NFT minting.
-- Quiz answers and logic are visible in the client. Passing scores are **not** evidence of identity or competence for high-trust purposes.
-- The `bodybagz.local-practice.v1` export is an editable, unverified practice receipt. It must never authorize fund access or minting.
-- Cross-origin module access to BodyBagz hub localStorage is deliberately absent. Do not create it during integration.
-- Builder exercise text is escaped before rendering. Never enter private keys, secrets or sensitive personal information.
-- Real credentials would require independent identity, secure assessment records, signed issuer claims, expiration/revocation, and server-side verification; client-side local pass flags cannot fulfill those requirements.
+## What a browser-local pass means
 
-Report security issues privately to repository maintainers rather than posting secrets into public issues.
+- Quiz answers are shipped in public client code. A user can edit quiz scores, lesson progress and self-reviewed artifacts.
+- The four-part practice exercise has a minimum length and a self-review acknowledgement. That is **not** proof of authorship, ability or instructor assessment.
+- `bodybagz.local-practice.v1` is a self-reported, editable completion receipt. It must never authorize funds, minting, governance or official enrollment.
+- `udt.local-portfolio.v1` is a self-reported private draft export, not a signed portfolio or verifiable credential.
+- The app uses independent `ugly-duck-tek.practice.v1` localStorage with additive fields. It does not read data from the BodyBagz ecosystem or Watchtower Crypto domains.
+- Prior browser records retain earlier scores and free-form notes, but old quiz-only completion is not represented as the new applied-practice completion.
+
+## Operational boundaries
+
+- Browser storage may be lost and is **not encrypted, automatically synced, moderated or backed up**.
+- Do not enter passwords, wallet recovery phrases, confidential business information or participant personal data in exercise responses.
+- User-entered writing is escaped when re-rendered. Length limits and validation are applied to state and artifact drafts.
+- The application uses system fonts and no runtime JavaScript library dependencies beyond browser APIs.
+- An HTML meta Content Security Policy restricts script sources, object embedding and network access. Inline styles remain permitted for current UI progress rendering. Meta CSP cannot enforce all directives available to HTTP headers. A future server should implement an audited response-header policy.
+- The browser confirmation before reset warns that removing local data is irreversible on that device; exported copies remain the user's responsibility.
+
+## Future trusted certification
+
+Before an official credential, build identity and consent, proper server-side assessment control, a rigorous practical evaluation rubric with human oversight, appeals, data retention/deletion policies, a verifiable issuer, expiration/revocation, and an independent verifier. Neither BodyBagz Forge nor any third party should grant privileges based on localStorage or user-edited JSON.
+
+Report vulnerabilities privately to repository maintainers rather than posting secrets in public issues.

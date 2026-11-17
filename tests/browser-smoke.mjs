@@ -51,7 +51,8 @@ try{
  assert.ok((await page.locator('#artifactForm textarea[name="audience"]').inputValue()).length>=30);
  for(const l of LESSONS.slice(1)){
   await page.locator('a[href="#/lesson/'+l.id+'"]').first().click();
-  await page.locator("#quizForm").waitFor();
+  await page.locator('#artifactForm[data-lesson="'+l.id+'"]').waitFor();
+  await page.locator('#quizForm[data-lesson="'+l.id+'"]').waitFor();
   await fillArtifact(page,l);
   await answer(page,l,true);
  }
@@ -101,8 +102,8 @@ try{
  await mobile.locator("#mobileNavToggle").click();
  assert.equal(await mobile.locator("#lessonNav").isVisible(),true);
  await mobile.locator('a[href="#/lesson/orientation"]').first().click();
- await mobile.locator("#artifactForm").waitFor();
- assert.equal(await mobile.locator("#lessonNav").isVisible(),false);
+ await mobile.locator('#artifactForm[data-lesson="orientation"]').waitFor();
+ await mobile.locator("#lessonNav").waitFor({state:"hidden"});
  assert.equal(errors.length,0,errors.join("\n"));
  console.log("UGLY DUCK TEK V0.2: scenarios, artifacts, migration, two-part completion, export fields, reset confirm/cancel, no-JS and mobile nav PASS");
 }catch(e){console.error("Applied academy E2E failed:",e);process.exitCode=1;}finally{await browser.close();}

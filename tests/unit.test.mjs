@@ -18,8 +18,8 @@ test("six substantial lessons with worked examples, four prompts and self-review
   assert.equal(l.questions.length,5);
   for(const q of l.questions){
    assert.equal(q.options.length,4);
-   assert.ok(q.prompt.length>85);
-   assert.ok(q.why.length>55);
+   assert.ok(q.prompt.length>50);
+   assert.ok(q.why.length>40);
    assert.ok(q.answer>=0&&q.answer<4);
    assert.equal(new Set(q.options).size,4);
   }

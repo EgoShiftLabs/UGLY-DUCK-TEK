@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGLY DUCK TEK browser-local self-reviewed learning portfolio",
+  "description": "Editable learner-generated practice exercises, without independent grading or verified credential authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "course",
+    "exportedAt",
+    "notice",
+    "artifacts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "udt.local-portfolio.v1"
+    },
+    "course": {
+      "const": "UGLY DUCK TEK"
+    },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notice": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "lessonId",
+          "lesson",
+          "sections",
+          "selfChecked",
+          "at"
+        ],
+        "properties": {
+          "lessonId": {
+            "type": "string"
+          },
+          "lesson": {
+            "type": "string"
+          },
+          "sections": {
+            "type": "object",
+            "minProperties": 4,
+            "maxProperties": 4,
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 30,
+              "maxLength": 900
+            }
+          },
+          "selfChecked": {
+            "const": true
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}
